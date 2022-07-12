@@ -89,3 +89,70 @@ label {
   }
 }
 
+/*Tela Pessoas*/
+
+@media (min-width: 40em) {
+
+  .pessoas-col-valor-header {
+    width:120px;
+  }
+
+  .pessoas-col-status {
+    text-align: right !important;
+  }
+
+  .pessoas-col-data-header {
+    width: 120px;
+  }
+
+  .pessoas-col-data {
+    text-align: center !important
+    ;
+  }
+
+  .pessoas-col-acoes-header {
+    width: 115px;
+  }
+
+  .pessoas-col-acoes {
+    width:115px;
+    text-align: center !important;
+  }
+
+  .pessoas-col-acoes .p-button {
+    margin: 1px;
+  }
+}
+
+.pessoas-col-ativo-content {
+  text-decoration: none;
+}
+
+.pessoas-col-ativo-content:hover {
+  text-decoration: underline;
+}
+
+.pessoas-col-status-content {
+  text-align: left !important ;
+}
+
+.pessoas-col-data-content {
+  text-align: left !important;
+}
+
+.pessoas-col-data-header {
+  width: 120px;
+}
+
+
+.pessoas-col-acoes-header {
+  width: 115px;
+}
+
+
+.pessoas-col-acoes {
+  width: 115px;
+  text-align: center !important;
+  margin: 1px;
+}
+

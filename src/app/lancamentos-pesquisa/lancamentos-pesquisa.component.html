@@ -28,7 +28,8 @@
   <div class="p-grid">
     <div class="p-col-12">
       <p-table  [value]="lancamentos" [paginator]="true" [rows]="2"
-                [responsive]="true" >
+       [responsive]="true"
+       styleClass="p-datatable-striped p-datatable-gridlines">
 
         <ng-template pTemplate="header">
           <tr>
@@ -44,23 +45,22 @@
         <ng-template pTemplate="body" let-lancamento>
           <tr>
             <td>
-              <span class="p-Column-title">Pessoa</span>
+              <span class="p-column-title">Pessoa</span>
               {{ lancamento.pessoa }}
             </td>
             <td>
-              <span class="p-Column-title">Descrição</span>
+              <span class="p-column-title">Descrição</span>
               {{ lancamento.descricao }}
             </td>
             <td class="col-data-content">
-              <span class="p-Column-title">Vencimento</span>
-              {{ lancamento.dataVencimento }}
+              <span class="p-column-title">Vencimento</span>
             </td>
             <td class="col-data-content">
-              <span class="p-Column-title">Pagamento</span>
+              <span class="p-column-title">Pagamento</span>
               {{ lancamento.dataPagamento }}
             </td>
             <td class="col-valor-content" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
-              <span class="p-Column-title">Valor</span>
+              <span class="p-column-title">Valor</span>
               {{ lancamento.valor }}
             </td>
             <td class="col-acoes">
