@@ -89,7 +89,7 @@ label {
   }
 }
 
-/*Tela Pessoas*/
+/*Tela Pesquisa de Pessoas*/
 
 @media (min-width: 40em) {
 
@@ -156,3 +156,7 @@ label {
   margin: 1px;
 }
 
+/* Tela Cadastro de lançamentos */
+.p-button {
+  margin-right: .25em
+}
