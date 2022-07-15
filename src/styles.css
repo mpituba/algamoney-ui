@@ -161,7 +161,8 @@ label {
   margin: 1px;
 }
 
-/* Tela Cadastro de lançamentos */
+/* Tela Cadastro de lançamentos*/
 .p-button {
-  margin-right: .25em
+  margin-right: .25em !important;
 }
+

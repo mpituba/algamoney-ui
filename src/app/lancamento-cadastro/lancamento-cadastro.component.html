@@ -6,6 +6,10 @@
         <h1>Novo Lançamento</h1>
       </div>
 
+      <div class="p-col-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+
       <div class="p-col-6 p-md-3 p-fluid">
         <label>Vencimento</label>
         <!--input pInputText type="text"-->
@@ -15,7 +19,7 @@
       </div>
 
       <div class="p-col-6 p-md-3 p-fluid">
-        <label>Pagamento</label>
+        <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
         <p-calendar dateFormat="dd/mm/yy"
         [inline]="false" [readonlyInput]="false"
         [showIcon]="false"></p-calendar>
@@ -46,7 +50,7 @@
         <textarea input pInputTextarea rows="3"></textarea>
       </div>
 
-      <div>
+      <div class="p-col-12 p-md-12">
         <button pButton type="submit" label="Salvar"></button>
         <button pButton type="button" label="Novo" class="p-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
