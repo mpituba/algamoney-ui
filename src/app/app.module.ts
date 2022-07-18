@@ -19,6 +19,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { InputMaskModule } from 'primeng/inputmask';
+import { FormsModule } from '@angular/forms';
+import { MessageModule } from 'primeng/message';
 
 
 
@@ -44,7 +46,10 @@ import { InputMaskModule } from 'primeng/inputmask';
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
-    InputMaskModule
+    InputMaskModule,
+    FormsModule,
+    MessageModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
