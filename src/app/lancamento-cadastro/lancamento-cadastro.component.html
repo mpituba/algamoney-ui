@@ -26,33 +26,17 @@
       </div>
 
       <div class="p-col-12 p-md-9 p-fluid">
-        <label>Descrição {{descricao.errors |json}}</label>
+        <label>Descrição</label>
         <input pInputText type="text" name="descricao"
           ngModel #descricao="ngModel" required minlength="5">
 
-        <!-- Outra maneira de fazer a mensagem de erro
-          <div *ngIf="descricao.hasError('required') && descricao.dirty"
-            class="p-message p-messages-error">
-            Informe uma descrição
-          </div>
+        <app-message [control]="descricao" error="required"
+          text="Informe uma descrição">
+        </app-message>
 
-          <div *ngIf="descricao.hasError('minlength') && descricao.dirty"
-            class="p-message p-messages-error">
-            Mínimo de {{ descricao.errors?.minlength.requiredLength }} caracteres.
-            Você digitou apenas {{ descricao.errors?.minlength.actualLength }} caracteres
-          </div>
-         -->
-
-        <p-message *ngIf="descricao.hasError('required') && descricao.dirty"
-          severity="error" text="Informe uma descrição">
-        </p-message>
-
-        <p-message *ngIf="descricao.hasError('minlength') && descricao.dirty"
-          severity="error"
-          text="Mínimo de {{ descricao.errors?.minlength.requiredLength }} caracteres.
-           Você digitou apenas {{ descricao.errors?.minlength.actualLength }}">
-        </p-message>
-
+        <app-message [control]="descricao" error="minlength"
+          text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres.">
+        </app-message>
 
       </div>
 

@@ -21,6 +21,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
 import { InputMaskModule } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
+import { MessageComponent } from './message/message.component';
 
 
 
@@ -31,7 +32,8 @@ import { MessageModule } from 'primeng/message';
     NavbarComponent,
     PessoasPesquisaComponent,
     LancamentoCadastroComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
