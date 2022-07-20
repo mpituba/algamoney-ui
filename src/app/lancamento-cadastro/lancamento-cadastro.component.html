@@ -1,5 +1,5 @@
 <div class="container">
-  <form autocomplete="off">
+  <form autocomplete="off" #cadLancamentoForm="ngForm">
     <div class="p-grid">
 
       <div class="p-col-12">
@@ -11,18 +11,29 @@
       </div>
 
       <div class="p-col-6 p-md-3 p-fluid">
+
         <label>Vencimento</label>
-        <!--input pInputText type="text"-->
-        <p-calendar dateFormat="dd/mm/yy"
-          [inline]="false" [readonlyInput]="false"
-          [showIcon]="false"></p-calendar>
+
+        <p-calendar name="vencimento" dateFormat="dd/mm/yy"
+          [inline]="false" [readonlyInput]="false" [showIcon]="false"
+          ngModel #vencimento="ngModel" [required]="true">
+        </p-calendar>
+
+        <app-message [control]="vencimento" error="required"
+          text="Informe uma data de vencimento">
+        </app-message>
+
       </div>
 
       <div class="p-col-6 p-md-3 p-fluid">
+
         <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
+
         <p-calendar dateFormat="dd/mm/yy"
-        [inline]="false" [readonlyInput]="false"
-        [showIcon]="false"></p-calendar>
+          [inline]="false" [readonlyInput]="false"
+          [showIcon]="false">
+        </p-calendar>
+
       </div>
 
       <div class="p-col-12 p-md-9 p-fluid">
@@ -43,26 +54,54 @@
       <div class="p-col-12 p-md-3 p-fluid">
         <label>valor</label>
 
-        <p-inputNumber mode="currency" currency="BRL" placeholder="0,00"></p-inputNumber>
+        <p-inputNumber name="valor" ngModel #valor="ngModel" mode="currency"
+          currency="BRL" placeholder="0,00" [required]="true"></p-inputNumber>
+
+        <app-message [control]="valor" error="required"
+          text="Informe um valor">
+        </app-message>
+
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
+
         <label>Categoria</label>
-        <p-dropdown [options]="categorias" placeholder="Selecione"></p-dropdown>
+
+        <p-dropdown name="categoria" [options]="categorias"
+          placeholder="Selecione" [required]="true"
+          ngModel #categoria="ngModel">
+        </p-dropdown>
+
+        <app-message [control]="categoria" error="required"
+          text="Informe uma categoria">
+        </app-message>
+
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
         <label>Pessoa</label>
-        <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true"></p-dropdown>
+
+        <p-dropdown  name="pessoa" [options]="pessoas"
+          placeholder="Selecione" [filter]="true" [required]="true"
+          ngModel #pessoa="ngModel">
+        </p-dropdown>
+
+        <app-message [control]="pessoa" error="required"
+          text="Informe uma pessoa">
+        </app-message>
+
       </div>
 
       <div class="p-col-12 p-md-12 p-fluid">
+
         <label>Observação</label>
+
         <textarea input pInputTextarea rows="3"></textarea>
+
       </div>
 
       <div class="p-col-12 p-md-12">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton [disabled]="cadLancamentoForm.invalid" type="submit" label="Salvar"></button>
         <button pButton type="button" label="Novo" class="p-button-info"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
