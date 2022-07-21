@@ -121,7 +121,7 @@ label {
 
   .pessoas-col-acoes {
     width:115px;
-    text-align: center !important;
+    /*text-align: center !important;*/
   }
 
   .pessoas-col-acoes .p-button {
@@ -157,12 +157,12 @@ label {
 
 .pessoas-col-acoes {
   width: 115px;
-  text-align: center !important;
+  /*text-align: center !important;*/
   margin: 1px;
 }
 
-/* Tela Cadastro de lançamentos*/
+/* Tela Cadastro de lançamentos
 .p-button {
-  margin-right: .25em !important;
-}
+ margin-right: .25em !important;
+}*/
 
