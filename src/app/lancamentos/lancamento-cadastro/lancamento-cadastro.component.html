@@ -19,9 +19,9 @@
           ngModel #vencimento="ngModel" [required]="true">
         </p-calendar>
 
-        <app-message [control]="vencimento" error="required"
+        <!--<app-message [control]="vencimento" error="required"
           text="Informe uma data de vencimento">
-        </app-message>
+        </app-message>-->
 
       </div>
 
@@ -41,13 +41,13 @@
         <input pInputText type="text" name="descricao"
           ngModel #descricao="ngModel" required minlength="5">
 
-        <app-message [control]="descricao" error="required"
+        <!--<app-message [control]="descricao" error="required"
           text="Informe uma descrição">
-        </app-message>
+        </app-message>-->
 
-        <app-message [control]="descricao" error="minlength"
+        <!--<app-message [control]="descricao" error="minlength"
           text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres.">
-        </app-message>
+        </app-message>-->
 
       </div>
 
@@ -57,9 +57,9 @@
         <p-inputNumber name="valor" ngModel #valor="ngModel" mode="currency"
           currency="BRL" placeholder="0,00" [required]="true"></p-inputNumber>
 
-        <app-message [control]="valor" error="required"
+        <!--<app-message [control]="valor" error="required"
           text="Informe um valor">
-        </app-message>
+        </app-message>-->
 
       </div>
 
@@ -72,9 +72,9 @@
           ngModel #categoria="ngModel">
         </p-dropdown>
 
-        <app-message [control]="categoria" error="required"
+        <!--<app-message [control]="categoria" error="required"
           text="Informe uma categoria">
-        </app-message>
+        </app-message>-->
 
       </div>
 
@@ -86,9 +86,9 @@
           ngModel #pessoa="ngModel">
         </p-dropdown>
 
-        <app-message [control]="pessoa" error="required"
+        <!--<app-message [control]="pessoa" error="required"
           text="Informe uma pessoa">
-        </app-message>
+        </app-message>-->
 
       </div>
 
