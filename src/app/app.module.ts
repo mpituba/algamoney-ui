@@ -1,17 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
 import { NgModule } from '@angular/core';
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { MessageModule } from 'primeng/message';
-
+import { AppComponent } from './app.component';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { CoreModule } from './core/core.module';
 
 /* Adição dos três imports e locale abaixo para funcionamento do locale ptBR
   também é preciso do BroserMoule e FormsModule */
@@ -24,7 +21,7 @@ registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+
 
   ],
   imports: [
@@ -36,7 +33,8 @@ registerLocaleData(ptBr);
 
 
     LancamentosModule,
-    PessoasModule
+    PessoasModule,
+    CoreModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
