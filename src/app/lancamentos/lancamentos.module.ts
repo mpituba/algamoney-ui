@@ -18,6 +18,8 @@ import { AppRoutingModule } from './../app-routing.module';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { SharedModule } from './../shared/shared.module';
+
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
-    MessageModule,
+
+    SharedModule
+
   ],
   exports: [
     LancamentoCadastroComponent,

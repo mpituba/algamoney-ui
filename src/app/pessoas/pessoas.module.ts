@@ -18,7 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-
+import { SharedModule } from './../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +42,8 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     InputNumberModule,
     InputMaskModule,
     MessageModule,
+
+    SharedModule
   ],
   exports: [
     PessoaCadastroComponent,

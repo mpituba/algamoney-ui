@@ -11,9 +11,9 @@
         <input name="nome" pInputText type="text"
           ngModel #nome="ngModel" required minlength="5">
 
-        <!--app-message [control]="nome" error="required"
+        <app-message [control]="nome" error="required"
           text="Insira um nome">
-        </app-message-->
+        </app-message>
 
         <!--app-message [control]="nome" error="minlength"
           text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres">
@@ -26,9 +26,9 @@
         <input name="logradouro" pInputText type="text"
         ngModel #logradouro="ngModel" required>
 
-        <!--app-message [control]="logradouro" error="required"
+        <app-message [control]="logradouro" error="required"
           text="Insira um logradouro">
-        </app-message-->
+        </app-message>
 
       </div>
 
@@ -37,9 +37,9 @@
         <input name="numero" pInputText type="text"
           ngModel #numero="ngModel" required>
 
-        <!--app-message [control]="numero" error="required"
+        <app-message [control]="numero" error="required"
           text="Insira um número">
-        </app-message-->
+        </app-message>
 
       </div>
 
@@ -53,9 +53,9 @@
         <input name="bairro" pInputText type="text"
           ngModel #bairro="ngModel" required>
 
-        <!--app-message [control]="bairro" error="required"
+        <app-message [control]="bairro" error="required"
           text="Insira um bairro">
-        </app-message-->
+        </app-message>
 
       </div>
 
@@ -65,9 +65,9 @@
           ngModel #cep="ngModel" [required]="true">
         </p-inputMask>
 
-        <!--app-message [control]="cep" error="required"
+        <app-message [control]="cep" error="required"
           text="Insira um CEP">
-        </app-message-->
+        </app-message>
 
       </div>
 
@@ -76,8 +76,8 @@
         <input name="cidade" pInputText type="text"
           ngModel #cidade="ngModel" required>
 
-        <!--app-message [control]="cidade" error="required"
-          text="Insira uma cidade"></app-message-->
+        <app-message [control]="cidade" error="required"
+          text="Insira uma cidade"></app-message>
       </div>
 
       <div class="p-col-12 p-md-6 p-fluid">
@@ -85,8 +85,8 @@
         <input name="estado" pInputText type="text"
           ngModel #estado="ngModel" required>
 
-        <!--app-message [control]="estado" error="required"
-          text="Insira um estado"></app-message-->
+        <app-message [control]="estado" error="required"
+          text="Insira um estado"></app-message>
       </div>
 
       <div class="p-col-12 p-md-12">

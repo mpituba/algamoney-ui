@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { MessageModule } from 'primeng/message';
-import { MessageComponent } from './message/message.component';
+
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
@@ -25,7 +25,7 @@ registerLocaleData(ptBr);
   declarations: [
     AppComponent,
     NavbarComponent,
-    MessageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -34,13 +34,9 @@ registerLocaleData(ptBr);
     AppRoutingModule,
 
 
-    MessageModule,
 
     LancamentosModule,
     PessoasModule
-
-
-
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
