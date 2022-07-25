@@ -1,36 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './../app-routing.module';
 
-import { TooltipModule } from 'primeng/tooltip';
 import { MessageModule } from 'primeng/message';
+import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { CalendarModule } from 'primeng/calendar';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { AppRoutingModule } from './../app-routing.module';
 
-
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
-import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
 
 @NgModule({
   declarations: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent,
-    LancamentosGridComponent
+    PessoaCadastroComponent,
+    PessoasPesquisaComponent,
+    PessoasGridComponent
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     FormsModule,
 
-    AppRoutingModule,
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -40,11 +40,12 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
+    InputMaskModule,
     MessageModule,
   ],
   exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
+    PessoaCadastroComponent,
+    PessoasPesquisaComponent
   ]
 })
-export class LancamentosModule { }
+export class PessoasModule { }
