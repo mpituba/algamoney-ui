@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LancamentoService } from './../lancamento.service';
+
+
+
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent {
+export class LancamentosPesquisaComponent implements OnInit {
 
-  lancamentos = [
+  lancamentos = [];
+    /*
     { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 6, 30),
       dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
     { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 6, 30),
@@ -24,6 +29,17 @@ export class LancamentosPesquisaComponent {
       dataPagamento: new Date(2017, 7, 9), valor: 1750, pessoa: 'Casa Nova Imóveis' },
     { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: new Date(2017, 7, 13),
       dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
-  ];
+      */
+
+  constructor(private lancamentoService: LancamentoService) {}
+
+  ngOnInit(): void {
+    this.pesquisar();
+  }
+
+  pesquisar(): void {
+    this.lancamentoService.pesquisar()
+      .then(lancamentos => this.lancamentos = lancamentos);
+  }
 
 }
