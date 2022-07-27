@@ -11,6 +11,7 @@ import { LancamentoService } from './../lancamento.service';
 })
 export class LancamentosPesquisaComponent implements OnInit {
 
+  descricao: string = '';
   lancamentos = [];
     /*
     { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 6, 30),
@@ -38,7 +39,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar(): void {
-    this.lancamentoService.pesquisar()
+    this.lancamentoService.pesquisar({descricao: this.descricao})
       .then(lancamentos => this.lancamentos = lancamentos);
   }
 
