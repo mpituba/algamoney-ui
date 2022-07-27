@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TRISTATECHECKBOX_VALUE_ACCESSOR } from 'primeng/tristatecheckbox';
 
-import { LancamentoService } from './../lancamento.service';
+import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
 
 
@@ -12,6 +13,8 @@ import { LancamentoService } from './../lancamento.service';
 export class LancamentosPesquisaComponent implements OnInit {
 
   descricao: string = '';
+  dataVencimentoInicio?: Date;
+  dataVencimentoFim?: Date;
   lancamentos = [];
     /*
     { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 6, 30),
@@ -39,7 +42,14 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar(): void {
-    this.lancamentoService.pesquisar({descricao: this.descricao})
+
+    const filtro: LancamentoFiltro = {
+      descricao: this.descricao,
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    }
+
+    this.lancamentoService.pesquisar(filtro)
       .then(lancamentos => this.lancamentos = lancamentos);
   }
 
