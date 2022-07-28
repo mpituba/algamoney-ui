@@ -34,9 +34,12 @@
 
   <div class="p-grid">
     <div class="p-col-12">
-      <p-table [value]="lancamentos" [paginator]="true" [rows]="2"
+      <p-table [value]="lancamentos"
        [responsive]="true"
-       styleClass="p-datatable-striped p-datatable-gridlines">
+       styleClass="p-datatable-striped p-datatable-gridlines"
+       [paginator]="true" [rows]="filtro.itensPorPagina"
+       [lazy]="true" [totalRecords]="totalRegistros"
+       (onLazyLoad)="aoMudarPagina($event)">
 
         <ng-template pTemplate="header">
           <tr>

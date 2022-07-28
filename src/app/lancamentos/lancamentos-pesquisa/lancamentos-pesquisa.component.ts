@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TRISTATECHECKBOX_VALUE_ACCESSOR } from 'primeng/tristatecheckbox';
+import { LazyLoadEvent } from 'primeng/api';
 
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 
@@ -12,6 +12,7 @@ import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 })
 export class LancamentosPesquisaComponent implements OnInit {
 
+  totalRegistros = 0;
   filtro = new LancamentoFiltro();
   lancamentos = [];
     /*
@@ -36,15 +37,23 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(private lancamentoService: LancamentoService) {}
 
   ngOnInit(): void {
-    this.pesquisar();
+
   }
 
-  pesquisar(): void {
+  pesquisar(pagina = 0): void {
+
+    this.filtro.pagina = pagina;
 
     this.lancamentoService.pesquisar(this.filtro)
       .then(resultado => {
+        this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
       });
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event!.first! / event!.rows!;
+    this.pesquisar(pagina);
   }
 
 }
