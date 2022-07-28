@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 
-export interface LancamentoFiltro {
-  descricao?: string,
-  dataVencimentoInicio?: Date,
-  dataVencimentoFim?: Date
+export class LancamentoFiltro {
+  descricao: string = '';
+  dataVencimentoInicio?: Date;
+  dataVencimentoFim?: Date;
+  pagina = 0;
+  itensPorPagina = 2;
 }
 
 
@@ -25,7 +27,11 @@ export class LancamentoService {
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    let params = new HttpParams();
+    let params = new HttpParams()
+      .set('page', filtro.pagina)
+      .set('size', filtro.itensPorPagina);
+
+
 
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao);
@@ -41,7 +47,16 @@ export class LancamentoService {
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params })
       .toPromise()
-      .then((response: any) => response['content']);
+      .then((response: any) => {
+        const lancamentos = response['content'];
+
+        const resultado = {
+          lancamentos,
+          total: response['totalElements']
+        };
+
+        return resultado;
+      });
   }
 
 }
