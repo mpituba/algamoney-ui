@@ -50,9 +50,10 @@ export class LancamentoService {
       .then((response: any) => {
         const lancamentos = response['content'];
 
+
         const resultado = {
           lancamentos,
-          total: response['totalElements']
+          total: response['totalElements'],
         };
 
         return resultado;
