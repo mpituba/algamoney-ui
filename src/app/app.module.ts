@@ -4,7 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { AppComponent } from './app.component';
 
@@ -24,13 +25,15 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     AppRoutingModule,
     ToastModule,
+    ConfirmDialogModule,
 
     LancamentosModule,
     PessoasModule,
     CoreModule
   ],
   providers: [
-    MessageService
+    MessageService,
+    ConfirmationService
   ],
 
   bootstrap: [
