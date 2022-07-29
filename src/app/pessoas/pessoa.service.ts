@@ -62,5 +62,4 @@ export class PessoaService implements OnInit {
       return lista;
    }
 
-
 }
