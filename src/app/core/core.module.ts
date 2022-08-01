@@ -28,6 +28,7 @@ registerLocaleData(localePt, 'pt-BR');
     NavbarComponent,
     ToastModule,
     ConfirmDialogModule
+
   ],
   providers: [
     DatePipe,

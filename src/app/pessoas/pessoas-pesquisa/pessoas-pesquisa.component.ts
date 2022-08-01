@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { Table } from 'primeng/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PessoaFiltro } from '../pessoa.service';
 import { PessoaService } from '../pessoa.service';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -15,10 +17,14 @@ export class PessoasPesquisaComponent implements OnInit{
   /*{ nome: 'Manoel Pinheiro', cidade: 'Uberlândia', estado: 'MG', ativo: true },
     { nome: 'Sebastião da Silva', cidade: 'São Paulo', estado: 'SP', ativo: false }*/
 
+  @ViewChild('tabela') grid!: Table;
   totalRegistros = 0;
   filtro = new PessoaFiltro();
 
-  constructor(private pessoaService: PessoaService) {}
+  constructor(private pessoaService: PessoaService,
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService) {}
 
   ngOnInit(): void {
 
@@ -38,5 +44,29 @@ export class PessoasPesquisaComponent implements OnInit{
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
+  }
+
+  confirmarExclusao(pessoa: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(pessoa);
+      }
+    });
+  }
+
+  excluir(pessoa: any) {
+    this.pessoaService.excluir(pessoa.codigo)
+      .then(() => {
+        if(this.grid.first === 0){
+          this.pesquisar();
+        }else {
+          this.grid.reset();
+        }
+
+        this.messageService.add({ severity: 'success',
+          detail: 'Pessoa excluída com sucesso!' })
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 }

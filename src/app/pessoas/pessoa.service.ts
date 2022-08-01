@@ -1,5 +1,3 @@
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 
@@ -60,6 +58,14 @@ export class PessoaService implements OnInit {
       console.log(lista);
 
       return lista;
-   }
+  }
+
+  excluir(codigo: number) {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, {headers})
+      .toPromise();
+  }
 
 }
