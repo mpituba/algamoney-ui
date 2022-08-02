@@ -56,9 +56,9 @@
             </td>
             <td class="pessoas-col-status-content">
               <span class="p-column-title">Status</span>
-              <a class="pessoas-col-ativo-content" href="#"
+              <a class="pessoas-col-ativo-content" href="javascript:;"
                 [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
-                tooltipPosition="top">
+                tooltipPosition="top" (click)="alternarStatus(pessoa)">
                 {{pessoa.ativo ? 'Ativo' : 'Inativo'}}
               </a>
             </td>
