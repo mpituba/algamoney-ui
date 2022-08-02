@@ -50,7 +50,7 @@ export class PessoaService implements OnInit {
 
   listarTodas(): Promise<any> {
     const headers = new HttpHeaders()
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
       let lista = this.http.get(this.pessoasUrl, { headers })
       .toPromise()
       .then((response: any) => response.json().content);

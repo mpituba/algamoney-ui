@@ -1,3 +1,4 @@
+import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Table } from 'primeng/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
