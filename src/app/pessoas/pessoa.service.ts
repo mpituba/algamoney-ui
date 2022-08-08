@@ -53,8 +53,8 @@ export class PessoaService implements OnInit {
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
       let lista = this.http.get(this.pessoasUrl, { headers })
       .toPromise()
-      .then((response: any) => response.json().content);
-      console.log(lista);
+      .then((response: any) => response['content']);
+      //console.log(lista);
 
       return lista;
   }
