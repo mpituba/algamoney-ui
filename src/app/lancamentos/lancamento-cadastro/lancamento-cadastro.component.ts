@@ -1,7 +1,9 @@
+import { Lancamento } from './../../core/model';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -11,17 +13,15 @@ import { Component, OnInit } from '@angular/core';
 export class LancamentoCadastroComponent implements OnInit {
 
   categorias: any[] = [];
+  pessoas: any[] = [];
+  lancamento = new Lancamento();
 
   /*
   categorias = [
     {label: 'Alimentação', value: 1},
     {label: 'Transporte', value: 2},
   ];
-  */
 
-  pessoas: any[] = [];
-
-  /*
   pessoas = [
     {label: 'Alberto Nunes de Souza', value: 1},
     {label: 'Gilbeto Souza Maior', value: 2},
@@ -42,6 +42,10 @@ export class LancamentoCadastroComponent implements OnInit {
   ngOnInit():void {
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  salvar(lancamentoForm: NgForm) {
+    console.log(this.lancamento);
   }
 
   carregarCategorias() {
