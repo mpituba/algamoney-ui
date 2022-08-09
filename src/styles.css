@@ -76,8 +76,7 @@ label {
   }
 
   .col-data {
-    text-align: center !important
-    ;
+    text-align: center !important;
   }
 
   .col-acoes-header {
@@ -111,8 +110,7 @@ label {
   }
 
   .pessoas-col-data {
-    text-align: center !important
-    ;
+    text-align: center !important;
   }
 
   .pessoas-col-acoes-header {
@@ -161,8 +159,8 @@ label {
   margin: 1px;
 }
 
-/* Tela Cadastro de lançamentos
+/* Tela Cadastro de lançamentos*/
 .p-button {
  margin-right: .25em !important;
-}*/
+}
 

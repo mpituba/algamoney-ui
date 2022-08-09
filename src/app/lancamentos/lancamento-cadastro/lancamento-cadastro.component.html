@@ -83,7 +83,7 @@
         <p-dropdown name="categoria" [options]="categorias"
           placeholder="Selecione" [required]="true"
           ngModel #categoria="ngModel"
-          [(ngModel)]="lancamento.categoria" >
+          [(ngModel)]="lancamento.categoria.codigo" >
         </p-dropdown>
 
         <app-message [control]="categoria" error="required"
@@ -98,7 +98,7 @@
         <p-dropdown  name="pessoa" [options]="pessoas"
           placeholder="Selecione" [filter]="true"
           [required]="true" ngModel #pessoa="ngModel"
-          [(ngModel)]="lancamento.pessoa" >
+          [(ngModel)]="lancamento.pessoa.codigo" >
         </p-dropdown>
 
         <app-message [control]="pessoa" error="required"
