@@ -6,6 +6,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -41,9 +42,13 @@ export class LancamentoCadastroComponent implements OnInit {
               private pessoaService: PessoaService,
               private errorHandler: ErrorHandlerService,
               private lancamentoService: LancamentoService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private route: ActivatedRoute) { }
 
   ngOnInit():void {
+
+    console.log(this.route.snapshot.params['codigo']);
+
     this.carregarCategorias();
     this.carregarPessoas();
   }
