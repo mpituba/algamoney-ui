@@ -5,11 +5,11 @@ import { DatePipe } from '@angular/common';
 import { Lancamento } from './../core/model';
 
 export class LancamentoFiltro {
-  descricao: string = '';
+  descricao?: string = '';
   dataVencimentoInicio?: Date;
   dataVencimentoFim?: Date;
-  pagina = 0;
-  itensPorPagina = 2;
+  pagina: number = 0;
+  itensPorPagina: number = 2;
 }
 
 
@@ -103,14 +103,16 @@ export class LancamentoService {
       });
   }
 
-  private converterStringsParaDatas(lancamentos: any[]) {
-
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
     for (const lancamento of lancamentos) {
+      //Evita bug na hora da edição, adiciona o timezone do usuário
+      let offset = new Date().getTimezoneOffset() * 60000;
 
-      lancamento.dataVencimento = new Date(lancamento.dataVencimento);
+      lancamento.dataVencimento = new Date(new Date(lancamento.dataVencimento!).getTime() + offset);
+
 
       if (lancamento.dataPagamento) {
-        lancamento.dataPagamento = new Date(lancamento.dataPagamento);
+        lancamento.dataPagamento = new Date(new Date(lancamento.dataPagamento).getTime() + offset);
       }
     }
   }

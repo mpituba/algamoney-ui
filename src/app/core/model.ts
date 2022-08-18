@@ -23,7 +23,7 @@ export class Categoria {
 
 export class Lancamento {
   codigo?: number;
-  tipo=  'RECEITA';
+  tipo =  'RECEITA';
   descricao?: string;
   dataVencimento?: Date;
   dataPagamento?: Date;

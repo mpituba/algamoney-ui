@@ -14,6 +14,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { AppRoutingModule } from './../app-routing.module';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
@@ -43,6 +44,7 @@ import { SharedModule } from './../shared/shared.module';
     SelectButtonModule,
     DropdownModule,
     InputNumberModule,
+    CurrencyMaskModule,
 
     SharedModule
 

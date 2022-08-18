@@ -21,13 +21,13 @@
 
         <label>Vencimento</label>
 
-        <p-calendar name="vencimento" dateFormat="dd/mm/yy"
+        <p-calendar name="dataVencimento" dateFormat="dd/mm/yy"
           [inline]="false" [readonlyInput]="false" [showIcon]="false"
-          ngModel #vencimento="ngModel" [required]="true"
+          #vencimento="ngModel" [required]="true"
           [(ngModel)]="lancamento.dataVencimento" >
         </p-calendar>
 
-        <app-message [control]="vencimento" error="required"
+        <app-message [control]="vencimento.control" error="required"
           text="Informe uma data de vencimento">
         </app-message>
 
@@ -37,10 +37,8 @@
 
         <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
 
-        <p-calendar dateFormat="dd/mm/yy"
-          [inline]="false" [readonlyInput]="false"
-          [showIcon]="false" name="pagamento"
-          [(ngModel)]="lancamento.dataPagamento" >
+        <p-calendar dateFormat="dd/mm/yy" name="dataPagamento"
+        [(ngModel)]="lancamento.dataPagamento" >
         </p-calendar>
 
       </div>
@@ -48,14 +46,14 @@
       <div class="p-col-12 p-md-9 p-fluid">
         <label>Descrição</label>
         <input pInputText type="text" name="descricao"
-          ngModel #descricao="ngModel" required minlength="5"
+          #descricao="ngModel" required minlength="5"
           [(ngModel)]="lancamento.descricao" >
 
-        <app-message [control]="descricao" error="required"
+        <app-message [control]="descricao.control" error="required"
           text="Informe uma descrição">
         </app-message>
 
-        <app-message [control]="descricao" error="minlength"
+        <app-message [control]="descricao.control" error="minlength"
           text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres.">
         </app-message>
 
@@ -64,13 +62,12 @@
       <div class="p-col-12 p-md-3 p-fluid">
         <label>valor</label>
 
-        <p-inputNumber name="valor" ngModel #valor="ngModel" mode="currency"
-          currency="BRL" placeholder="0,00"
-          [required]="true"
-          [(ngModel)]="lancamento.valor" >
-        </p-inputNumber>
+        <input pInputText type="text" placeholder="0,00" currencyMask
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+          [(ngModel)]="lancamento.valor" name="valor" #valor="ngModel" required>
 
-        <app-message [control]="valor" error="required"
+
+        <app-message [control]="valor.control" error="required"
           text="Informe um valor">
         </app-message>
 
@@ -81,14 +78,10 @@
         <label>Categoria</label>
 
         <p-dropdown name="categoria" [options]="categorias"
-          placeholder="Selecione" [required]="true"
-          ngModel #categoria="ngModel"
+          placeholder="Selecione"
+          #categoria [required]="true"
           [(ngModel)]="lancamento.categoria.codigo" >
         </p-dropdown>
-
-        <app-message [control]="categoria" error="required"
-          text="Informe uma categoria">
-        </app-message>
 
       </div>
 
@@ -97,13 +90,9 @@
 
         <p-dropdown  name="pessoa" [options]="pessoas"
           placeholder="Selecione" [filter]="true"
-          [required]="true" ngModel #pessoa="ngModel"
+          #pessoa [required]="true"
           [(ngModel)]="lancamento.pessoa.codigo" >
         </p-dropdown>
-
-        <app-message [control]="pessoa" error="required"
-          text="Informe uma pessoa">
-        </app-message>
 
       </div>
 
@@ -111,7 +100,7 @@
 
         <label>Observação</label>
 
-        <textarea input pInputTextarea rows="3"
+        <textarea pInputTextarea rows="3"
           [(ngModel)]="lancamento.observacao"
           name="observacao" ></textarea>
 
