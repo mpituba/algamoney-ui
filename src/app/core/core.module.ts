@@ -11,13 +11,15 @@ import { LancamentoService } from './../lancamentos/lancamento.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     CommonModule,
