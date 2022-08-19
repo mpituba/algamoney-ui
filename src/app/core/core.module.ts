@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
@@ -41,6 +42,7 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmationService,
     LancamentoService,
     PessoaService,
+    Title,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
