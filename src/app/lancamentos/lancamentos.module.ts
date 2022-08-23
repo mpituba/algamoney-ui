@@ -19,7 +19,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { SharedModule } from './../shared/shared.module';
-
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 
 @NgModule({
@@ -32,7 +32,7 @@ import { SharedModule } from './../shared/shared.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    RouterModule,
+
 
     AppRoutingModule,
     InputTextModule,
@@ -46,7 +46,8 @@ import { SharedModule } from './../shared/shared.module';
     InputNumberModule,
     CurrencyMaskModule,
 
-    SharedModule
+    SharedModule,
+    LancamentosRoutingModule
 
   ],
   exports: []
