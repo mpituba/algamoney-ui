@@ -3,7 +3,7 @@ import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/l
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 import { CoreModule } from './core/core.module';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,12 +26,11 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    AppRoutingModule,
 
-
+    CoreModule,
     LancamentosModule,
     PessoasModule,
-    CoreModule,
+
     AppRoutingModule
   ],
   providers: [],

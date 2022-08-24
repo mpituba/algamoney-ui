@@ -32,7 +32,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
-
+    RouterModule,
 
     AppRoutingModule,
     InputTextModule,
@@ -47,7 +47,7 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     CurrencyMaskModule,
 
     SharedModule,
-    LancamentosRoutingModule
+    LancamentosRoutingModule,
 
   ],
   exports: []
