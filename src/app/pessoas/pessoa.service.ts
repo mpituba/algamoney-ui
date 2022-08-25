@@ -22,6 +22,7 @@ export class PessoaService implements OnInit {
   constructor(private http: HttpClient) {
   }
 
+
   pesquisar (filtro: PessoaFiltro): Promise<any> {
 
     const headers = new HttpHeaders()
@@ -86,6 +87,16 @@ export class PessoaService implements OnInit {
       return this.http.post<Pessoa>(this.pessoasUrl, pessoa,
           { headers })
           .toPromise();
+  }
+
+  /* A fazer */
+  atualizar () {
+
+  }
+
+  /* A fazer */
+  buscaPorCodigo () {
+
   }
 
 }

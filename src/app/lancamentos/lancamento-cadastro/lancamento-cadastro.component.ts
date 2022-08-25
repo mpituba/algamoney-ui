@@ -55,30 +55,36 @@ export class LancamentoCadastroComponent implements OnInit {
 
   ngOnInit():void {
 
+    /* Pega o codigo de lancamento da página */
     const codigoLancamento = this.route.snapshot.params['codigo'];
 
+    /* Define o título com a string informada */
     this.title.setTitle('Novo lançamento');
 
+    /* Se possuir codigo de lancamento está em modo de edição */
     if (codigoLancamento) {
       this.carregarLancamento(codigoLancamento);
     }
 
+    /* Carrega categorias e pessoas via métodos apropriados */
     this.carregarCategorias();
     this.carregarPessoas();
   }
+
+
+
+  /* Método que identifica o modo de edição do formulário */
 
   get editando () {
     return Boolean(this.lancamento.codigo)
   }
 
-  carregarLancamento(codigo: number) {
-    this.lancamentoService.buscarPorCodigo(codigo)
-    .then(lancamento => {
-      this.lancamento = lancamento;
-      this.atualizarTituloEdicao();
-    })
-    .catch(erro => this.errorHandler.handle(erro));
-  }
+
+
+
+  /* Método que em caso de edição chama o atualizarLancamento passando
+      os dados de formulário recebido ou em outro caso chama o método
+      adicionarLancamento passando os dados do formulário. */
 
   salvar(form: NgForm) {
     if (this.editando) {
@@ -87,6 +93,12 @@ export class LancamentoCadastroComponent implements OnInit {
       this.adicionarLancamento(form);
     }
   }
+
+
+
+  /* Método que recebe dados do formulário e faz um POST via lancamentoService,
+      envia mensagem de sucesso, retorna a tela de novo lancamento e lida
+      com exceções de erro. */
 
   adicionarLancamento(form: NgForm) {
     this.lancamentoService.adicionar(this.lancamento)
@@ -98,10 +110,17 @@ export class LancamentoCadastroComponent implements OnInit {
           //this.lancamento = new Lancamento();
 
           /* Redirecionamento programático */
-          this.router.navigate(['/lancamentos/novo', lancamentoAdicionado]);
+      this.router.navigate(['/lancamentos/novo', lancamentoAdicionado]);
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
+
+
+
+  /* Método que recebe dados do formulário e faz um PUT via lancamentoService,
+      envia mensagem de sucesso, retorna dados atualizados enviados pela api
+      para a variável que apresenta na tela, atualiza título da página, e lida
+      com exceções de erro. */
 
   atualizarLancamento(form: NgForm) {
 
@@ -117,6 +136,28 @@ export class LancamentoCadastroComponent implements OnInit {
 
     }
 
+
+
+  /* Método que é chamado na carga de um lançamento e retorna tal lancamento
+      de acordo com seu código e o passa para a variável que o apresenta na
+      tela, é chamado no NgOnInit.
+      Atualiza o título da página.
+      Retorna o lancamento para a variável que o apresentará na página. */
+
+  carregarLancamento(codigo: number) {
+    this.lancamentoService.buscarPorCodigo(codigo)
+    .then(lancamento => {
+      this.lancamento = lancamento;
+      this.atualizarTituloEdicao();
+    })
+    .catch(erro => this.errorHandler.handle(erro));
+  }
+
+
+
+  /* Método que é chamado para a carga de uma categoria e as lista via
+      categoriaService lidando com seus erros.  */
+
   carregarCategorias() {
 
     return this.categoriaService.listarTodas()
@@ -128,6 +169,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
   }
 
+
+  /* Método que é chamado para a carga de uma pessoa e as lista via
+      pessoaService lidando com seus erros.  */
+
   carregarPessoas() {
     return this.pessoaService.listarTodas()
     .then(pessoas => {
@@ -136,12 +181,23 @@ export class LancamentoCadastroComponent implements OnInit {
     .catch(erro => this.errorHandler.handle(erro));
   }
 
+
+
+  /* Método que chama um novo formulário recebendo seus dados vazios,
+      reseta o formulário com um novo objeto e redireciona a página
+      para um nono lancamento na api. */
+
   novo(lancamentoForm: NgForm) {
     lancamentoForm.reset(new Lancamento);
 
     //redirecionamento programático
     this.router.navigate(['lancamentos/novo']);
   }
+
+
+
+  /* Atualiza a informação de edição de uma lancamento baseado em sua
+      descrição. */
 
   atualizarTituloEdicao() {
     this.title.setTitle(`Edição de lançamento: ${this.lancamento.descricao}`);

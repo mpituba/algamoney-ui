@@ -23,6 +23,10 @@ export class LancamentoService {
 
   }
 
+  /* Método que retorna lançamentos da api de lancamentos - Retorna
+     todos os lançamentos com base nos critérios passados ao filtro
+     de lançamentos. */
+
   pesquisar (filtro: LancamentoFiltro): Promise<any> {
 
    const headers = new HttpHeaders()
@@ -61,6 +65,9 @@ export class LancamentoService {
       });
   }
 
+  /* Método que exclui um lancamento existente na api de lançamentos, com
+      base em um codigo informado. */
+
   excluir(codigo: number){
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
@@ -68,6 +75,9 @@ export class LancamentoService {
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, {headers})
       .toPromise();
   }
+
+  /* Método que adiciona um lancamento na api de lancamentos - Adiciona
+      um registro de lancamento com base em um lancamento informado. */
 
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
     const headers = new HttpHeaders()
@@ -79,6 +89,9 @@ export class LancamentoService {
       .toPromise();
   }
 
+  /* Método usado para atualizar um lancamento existente na api de
+      lancamentos. */
+
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
@@ -88,6 +101,11 @@ export class LancamentoService {
        lancamento, { headers })
       .toPromise();
   }
+
+
+  /* Método usado para fazer uma busca na api de lancamentos com
+      base num código de lancamento existente. Retorna o tal lancamentos
+      se este existir  */
 
   buscarPorCodigo(codigo: number): Promise<Lancamento> {
 
@@ -102,6 +120,10 @@ export class LancamentoService {
         return response;
       });
   }
+
+
+  /* Método que converte strings de datas para formato de data para
+      o componente da interface de usuário */
 
   private converterStringsParaDatas(lancamentos: Lancamento[]) {
     for (const lancamento of lancamentos) {
