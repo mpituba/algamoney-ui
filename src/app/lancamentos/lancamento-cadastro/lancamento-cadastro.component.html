@@ -107,10 +107,16 @@
       </div>
 
       <div class="p-col-12 p-md-12">
-        <button pButton [disabled]="lancamentoForm.invalid" type="submit" label="Salvar"></button>
+
+        <button pButton [disabled]="lancamentoForm.invalid" type="submit" label="Salvar">
+        </button>
+
         <button pButton type="button" label="Novo"
-          class="p-button-info" (click)="novo(lancamentoForm)"></button>
+          class="p-button-info" (click)="novo(lancamentoForm)">
+        </button>
+
         <a routerLink="/lancamentos">Voltar para a pesquisa</a>
+
       </div>
 
     </div>

@@ -63,10 +63,16 @@
               </a>
             </td>
             <td class="pessoas-col-acoes">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+
+              <a pButton icon="pi pi-pencil" pTooltip="Editar"
+                tooltipPosition="top"
+                [routerLink]="['/pessoas', pessoa.codigo]"></a>
+
               <button pButton icon="pi pi-trash"
                 pTooltip="Excluir" tooltipPosition="top"
-                (click)="confirmarExclusao(pessoa)"></button>
+                (click)="confirmarExclusao(pessoa)">
+              </button>
+
             </td>
           </tr>
         </ng-template>
@@ -76,7 +82,7 @@
   </div>
 
   <div class="p-col-12">
-    <button pButton type="submit" label="Nova Pessoa"></button>
+    <a pButton label="Nova Pessoa" routerLink="/pessoas/nova"></a>
   </div>
 
 </div>
