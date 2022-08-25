@@ -34,7 +34,6 @@ import { LancamentosRoutingModule } from './lancamentos-routing.module';
     HttpClientModule,
     RouterModule,
 
-    AppRoutingModule,
     InputTextModule,
     ButtonModule,
     TableModule,
