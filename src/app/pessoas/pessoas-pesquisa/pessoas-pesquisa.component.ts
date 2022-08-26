@@ -38,6 +38,7 @@ export class PessoasPesquisaComponent implements OnInit{
 
     this.pessoaService.pesquisar(this.filtro)
       .then(resultado => {
+        /* resultado.total e resultado.pessoas retornam de pessoaService */
         this.totalRegistros = resultado.total;
         this.pessoas = resultado.pessoas;
       });

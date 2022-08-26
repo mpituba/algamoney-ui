@@ -35,6 +35,12 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.title.setTitle('Pesquisa de lançamentos');
   }
 
+
+
+  /* Método de pesquisa com filtro de lancamentos, que seta e retorna
+     variáveis necessárias a paginação , retorna a pequisa de lancamentos
+     e lida com os erros */
+
   pesquisar(pagina = 0): void {
 
     this.filtro.pagina = pagina;
@@ -47,10 +53,20 @@ export class LancamentosPesquisaComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+
+
+  /* Muda de página passando os valores corretos na variável página e
+      chama o método pesquisar com a página certa */
+
   aoMudarPagina(event: LazyLoadEvent) {
     const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
   }
+
+
+
+  /* Método que carrega a caixa de exclusão do confirmationService, em caso
+      que se confirma a exclusão o lancamento é passado ao método excluir(). */
 
   confirmarExclusao(lancamento: any): void {
     this.confirmationService.confirm({
@@ -62,6 +78,9 @@ export class LancamentosPesquisaComponent implements OnInit {
     });
   }
 
+
+
+  /* Método exclui um lancamento passado e ??? */
 
   excluir (lancamento: any) {
     this.lancamentoService.excluir(lancamento.codigo)

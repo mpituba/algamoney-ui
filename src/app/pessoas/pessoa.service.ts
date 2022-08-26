@@ -14,14 +14,23 @@ export class PessoaFiltro{
 export class PessoaService implements OnInit {
 
   ngOnInit(): void {
-      this.listarTodas();
+
+    this.listarTodas();
+
   }
 
   pessoasUrl = 'http://localhost:8080/pessoas';
 
   constructor(private http: HttpClient) {
+
   }
 
+
+
+  /* Método faz um GET na API de pessoas trazendo todos os registros, filtrando
+      com base nos valores recebidos pelo filtro de pessoas. O objeto resultado
+      retorna a lista de pessoas e total de elementos que retornarão em
+      resultado.pessoa e resultado.total respectivamente. */
 
   pesquisar (filtro: PessoaFiltro): Promise<any> {
 
@@ -39,6 +48,7 @@ export class PessoaService implements OnInit {
     return this.http.get(`${this.pessoasUrl}`, { headers, params })
       .toPromise()
       .then((response: any) => {
+
         const pessoas = response['content'];
 
         const resultado = {
@@ -49,6 +59,10 @@ export class PessoaService implements OnInit {
         return resultado;
       });
   }
+
+
+
+  /* Método faz um GET e retorna uma lista da API de pessoas sem filtragem */
 
   listarTodas(): Promise<any> {
     const headers = new HttpHeaders()
@@ -61,22 +75,27 @@ export class PessoaService implements OnInit {
       return lista;
   }
 
-  excluir(codigo: number) {
+
+
+  /* Método faz GET na API de pessoas de acordo com o codigo */
+
+  buscaPorCodigo (codigo: number): Promise<Pessoa> {
+
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.delete(`${this.pessoasUrl}/${codigo}`, {headers})
-      .toPromise();
+    return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then((response: any) => {
+
+        return response;
+      });
   }
 
-  mudarStatus( codigo: number, ativo: boolean ): Promise<void>{
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
 
-    return this.http.put<void>(`${this.pessoasUrl}/${codigo}/ativo`, ativo, {headers})
-      .toPromise();
-  }
+
+
+  /* Método faz um POST na api de pessoas com base na pessoa informada. */
 
   adicionar(pessoa: Pessoa): Promise<Pessoa> {
 
@@ -89,14 +108,50 @@ export class PessoaService implements OnInit {
           .toPromise();
   }
 
-  /* A fazer */
-  atualizar () {
+
+
+
+  /* Método faz PUT na API de pessoas */
+
+  atualizar (pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<Pessoa>(`${this.pessoasUrl}/${pessoa.codigo}`,
+      pessoa, { headers })
+      .toPromise();
 
   }
 
-  /* A fazer */
-  buscaPorCodigo () {
 
+
+  /* Método faz um DELETE com base no codigo informado.  */
+
+  excluir(codigo: number) {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`, {headers})
+      .toPromise();
   }
+
+
+
+
+  /* Método faz um PUT na api de pessoas com base no codigo e configura
+      o valor do parâmetro ativo. */
+
+  mudarStatus( codigo: number, ativo: boolean ): Promise<void>{
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http.put<void>(`${this.pessoasUrl}/${codigo}/ativo`, ativo, {headers})
+      .toPromise();
+  }
+
+
+
 
 }

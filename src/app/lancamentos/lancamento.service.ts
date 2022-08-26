@@ -23,9 +23,10 @@ export class LancamentoService {
 
   }
 
-  /* Método que retorna lançamentos da api de lancamentos - Retorna
-     todos os lançamentos com base nos critérios passados ao filtro
-     de lançamentos. */
+
+
+  /* Método faz GET na API de lancamentos - Retorna todos os lançamentos
+     com base nos critérios passados ao filtro de lançamentos. */
 
   pesquisar (filtro: LancamentoFiltro): Promise<any> {
 
@@ -35,8 +36,6 @@ export class LancamentoService {
     let params = new HttpParams()
       .set('page', filtro.pagina)
       .set('size', filtro.itensPorPagina);
-
-
 
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao);
@@ -55,7 +54,6 @@ export class LancamentoService {
       .then((response: any) => {
         const lancamentos = response['content'];
 
-
         const resultado = {
           lancamentos,
           total: response['totalElements'],
@@ -65,32 +63,46 @@ export class LancamentoService {
       });
   }
 
-  /* Método que exclui um lancamento existente na api de lançamentos, com
-      base em um codigo informado. */
 
-  excluir(codigo: number){
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, {headers})
-      .toPromise();
-  }
+  /* Método faz GET na API de lancamentos com retorna registro com
+    base num código de lancamento existente. Retorna o tal lancamento
+    se este existir  */
 
-  /* Método que adiciona um lancamento na api de lancamentos - Adiciona
-      um registro de lancamento com base em um lancamento informado. */
+    buscarPorCodigo(codigo: number): Promise<Lancamento> {
 
-  adicionar(lancamento: Lancamento): Promise<Lancamento> {
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
-      .append('Content-Type', 'application/json');
+      const headers = new HttpHeaders()
+        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.post<Lancamento>(this.lancamentosUrl,
-       lancamento, { headers })
-      .toPromise();
-  }
+      return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers })
+        .toPromise()
+        .then((response: any) => {
 
-  /* Método usado para atualizar um lancamento existente na api de
-      lancamentos. */
+          this.converterStringsParaDatas([response]);
+          return response;
+        });
+    }
+
+
+
+
+  /* Método faz POST na API de lancamentos, adiciona um novo lancamento
+    com base em um lancamento informado. */
+
+    adicionar(lancamento: Lancamento): Promise<Lancamento> {
+      const headers = new HttpHeaders()
+        .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+        .append('Content-Type', 'application/json');
+
+      return this.http.post<Lancamento>(this.lancamentosUrl,
+         lancamento, { headers })
+        .toPromise();
+    }
+
+
+
+
+  /* Método faz PUT na API de lancamentos. */
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     const headers = new HttpHeaders()
@@ -103,23 +115,19 @@ export class LancamentoService {
   }
 
 
-  /* Método usado para fazer uma busca na api de lancamentos com
-      base num código de lancamento existente. Retorna o tal lancamentos
-      se este existir  */
 
-  buscarPorCodigo(codigo: number): Promise<Lancamento> {
 
+  /* Método faz DELETE na API de lancamentos, exclui um lancamento existente
+      com base em um codigo informado. */
+
+  excluir(codigo: number){
     const headers = new HttpHeaders()
       .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
 
-    return this.http.get(`${this.lancamentosUrl}/${codigo}`, { headers })
-      .toPromise()
-      .then((response: any) => {
-
-        this.converterStringsParaDatas([response]);
-        return response;
-      });
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, {headers})
+      .toPromise();
   }
+
 
 
   /* Método que converte strings de datas para formato de data para
@@ -131,7 +139,6 @@ export class LancamentoService {
       let offset = new Date().getTimezoneOffset() * 60000;
 
       lancamento.dataVencimento = new Date(new Date(lancamento.dataVencimento!).getTime() + offset);
-
 
       if (lancamento.dataPagamento) {
         lancamento.dataPagamento = new Date(new Date(lancamento.dataPagamento).getTime() + offset);
