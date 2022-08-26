@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Table } from 'primeng/table';
@@ -26,10 +27,11 @@ export class PessoasPesquisaComponent implements OnInit{
   constructor(private pessoaService: PessoaService,
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
-    private confirmationService: ConfirmationService) {}
+    private confirmationService: ConfirmationService,
+    private title: Title) {}
 
   ngOnInit(): void {
-
+    this.title.setTitle('Pesquisa de pessoas');
   }
 
   pesquisar(pagina = 0): void {

@@ -82,9 +82,23 @@ export class LancamentoCadastroComponent implements OnInit {
 
 
 
-  /* Método que em caso de edição chama o atualizarLancamento passando
-      os dados de formulário recebido ou em outro caso chama o método
-      adicionarLancamento passando os dados do formulário. */
+  /* Método que chama um novo formulário recebendo seus dados vazios,
+      reseta o formulário com um novo objeto e redireciona a página
+      para um nono lancamento na api. */
+
+  novo(lancamentoForm: NgForm) {
+    lancamentoForm.reset(new Lancamento);
+
+    //redirecionamento programático
+    this.router.navigate(['lancamentos/novo']);
+  }
+
+
+
+
+  /* Método decisório entre POST e PUT para Salvar dados do cadastro,
+     chama o atualizarLancamento para dados existentes ou adicionarLancamento
+     no caso de dados novos. */
 
   salvar(form: NgForm) {
     if (this.editando) {
@@ -106,10 +120,10 @@ export class LancamentoCadastroComponent implements OnInit {
       this.messageService.add({ severity: 'success',
           detail: 'Lançamento adicionado com sucesso!' });
 
-          //form.reset();
-          //this.lancamento = new Lancamento();
+      //form.reset();
+      //this.lancamento = new Lancamento();
 
-          /* Redirecionamento programático */
+      /* Redirecionamento programático para lancamento/novo */
       this.router.navigate(['/lancamentos/novo', lancamentoAdicionado]);
     })
     .catch(erro => this.errorHandler.handle(erro));
@@ -139,10 +153,8 @@ export class LancamentoCadastroComponent implements OnInit {
 
 
   /* Método que é chamado na carga de um lançamento e retorna tal lancamento
-      de acordo com seu código e o passa para a variável que o apresenta na
-      tela, é chamado no NgOnInit.
-      Atualiza o título da página.
-      Retorna o lancamento para a variável que o apresentará na página. */
+    de acordo com seu código e o passa para a variável que o apresenta na
+    tela, é chamado no NgOnInit. Atualiza o título da página.  */
 
   carregarLancamento(codigo: number) {
     this.lancamentoService.buscarPorCodigo(codigo)
@@ -183,21 +195,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
 
 
-  /* Método que chama um novo formulário recebendo seus dados vazios,
-      reseta o formulário com um novo objeto e redireciona a página
-      para um nono lancamento na api. */
-
-  novo(lancamentoForm: NgForm) {
-    lancamentoForm.reset(new Lancamento);
-
-    //redirecionamento programático
-    this.router.navigate(['lancamentos/novo']);
-  }
 
 
-
-  /* Atualiza a informação de edição de uma lancamento baseado em sua
-      descrição. */
+  /* Método atualiza o título na  edição de um lancamento com a descrição
+      do lancamento. */
 
   atualizarTituloEdicao() {
     this.title.setTitle(`Edição de lançamento: ${this.lancamento.descricao}`);
