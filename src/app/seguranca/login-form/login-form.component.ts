@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Login } from './../../core/model';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-formLogin = new Login();
+logon = new Login();
 
 
   constructor(private router: Router) { }
@@ -19,8 +19,12 @@ formLogin = new Login();
   ngOnInit(): void {
   }
 
-  login(form: NgForm) {
+  login() {
 
+    //console.log(this.logon.usuario);
+    //console.log(this.logon.senha);
+
+    /* Direciona para a página inicial após logon */
     this.router.navigate(['lancamentos/']);
 
 

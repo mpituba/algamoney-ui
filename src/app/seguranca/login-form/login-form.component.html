@@ -2,7 +2,7 @@
   <div class="p-grid" >
 
     <form autocomplete=off #loginForm="ngForm"
-      (ngSubmit)="login(loginForm)" >
+      (ngSubmit)="login()" >
 
       <h1>Login</h1>
 
@@ -12,7 +12,7 @@
           required ngModel [email]="true" #email="ngModel"
           pTooltip="Insira um email válido no sistema. Exemplo: joao@gmail.com"
           tooltipPosition="right" placeholder="E-mail"
-          [(ngModel)]="formLogin.usuario" >
+          [(ngModel)]="logon.usuario" >
 
         <app-message *ngIf="(loginForm.touched ||(loginForm.touched && email.invalid))"[control]="email" error="email"
          text="Insira um e-mail válido"></app-message>
@@ -28,7 +28,7 @@
         <!--label>Senha</label-->
 
         <input pInputText name="senha" type="password" required
-          ngModel #senha="ngModel" [(ngModel)]="formLogin.senha"
+          ngModel #senha="ngModel" [(ngModel)]="logon.senha"
           placeholder="Senha">
 
         <app-message [control]="senha"
@@ -41,7 +41,7 @@
 
         <button pButton type="submit"
           [disabled]="loginForm.invalid" label="Login"
-          (click)="login(loginForm)">
+          (click)="login()">
         </button>
 
       </div>
