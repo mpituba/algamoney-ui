@@ -1,3 +1,4 @@
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
@@ -30,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     LancamentosModule,
     PessoasModule,
+    SegurancaModule,
 
     AppRoutingModule
   ],
