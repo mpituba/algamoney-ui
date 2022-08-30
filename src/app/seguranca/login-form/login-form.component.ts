@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Login } from './../../core/model';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -14,18 +15,20 @@ export class LoginFormComponent implements OnInit {
 //logon = new Login();
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit(): void {  }
 
   login(usuario: string, senha: string) {
-
     //console.log(usuario);
     //console.log(senha);
 
+    this.auth.login(usuario, senha);
+
 
     /* Direciona para a página inicial após logon */
-    this.router.navigate(['lancamentos/']);
+    //this.router.navigate(['lancamentos/']);
   }
 
 }

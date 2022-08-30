@@ -13,6 +13,7 @@ import { PessoaService } from './../pessoas/pessoa.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { AuthService } from '../seguranca/auth.service';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -43,6 +44,7 @@ registerLocaleData(localePt, 'pt-BR');
     LancamentoService,
     PessoaService,
     Title,
+    AuthService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
