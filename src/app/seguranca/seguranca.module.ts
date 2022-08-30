@@ -12,6 +12,7 @@ import { SegurancaRoutingModule } from './seguranca-routing.module';
 
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ButtonModule } from 'primeng/button';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -29,8 +30,18 @@ import { ButtonModule } from 'primeng/button';
     SegurancaRoutingModule,
     SharedModule,
     MessageModule,
-    TooltipModule
+    TooltipModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return '';
+        }
+      }
+    })
 
+  ],
+  providers: [
+    JwtHelperService
   ]
 })
 export class SegurancaModule { }
