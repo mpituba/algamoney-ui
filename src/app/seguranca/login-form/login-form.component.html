@@ -1,24 +1,24 @@
 <div class="container logon" >
   <div class="p-grid" >
 
-    <form autocomplete=off #loginForm="ngForm"
-      (ngSubmit)="login()" >
+    <form autocomplete=off #loginForm="ngForm">
 
       <h1>Login</h1>
 
       <div class="p-col-12 p-md-12 p-fluid">
         <!--label>E-mail</label-->
-        <input pInputText name="email" type="email" minlength="3"
-          required ngModel [email]="true" #email="ngModel"
+        <input pInputText name="usuario" type="email" minlength="3"
+          required ngModel [email]="true" #usuario="ngModel"
           pTooltip="Insira um email válido no sistema. Exemplo: joao@gmail.com"
-          tooltipPosition="right" placeholder="E-mail"
-          [(ngModel)]="logon.usuario" >
+          tooltipPosition="right" placeholder="E-mail" >
 
-        <app-message *ngIf="(loginForm.touched ||(loginForm.touched && email.invalid))"[control]="email" error="email"
-         text="Insira um e-mail válido"></app-message>
+        <app-message *ngIf="(usuario.touched)"
+          [control]="usuario" error="email" text="Insira um e-mail válido">
+        </app-message>
 
-         <app-message *ngIf="(loginForm.touched)" [control]="email" error="required"
-         text="Insira um e-mail."></app-message>
+         <app-message *ngIf="(usuario.touched)" [control]="usuario"
+          error="required" text="Insira um e-mail.">
+        </app-message>
 
 
       </div>
@@ -28,8 +28,7 @@
         <!--label>Senha</label-->
 
         <input pInputText name="senha" type="password" required
-          ngModel #senha="ngModel" [(ngModel)]="logon.senha"
-          placeholder="Senha">
+          ngModel #senha="ngModel" placeholder="Senha">
 
         <app-message [control]="senha"
          error="required" text="Insira uma senha">
@@ -41,7 +40,7 @@
 
         <button pButton type="submit"
           [disabled]="loginForm.invalid" label="Login"
-          (click)="login()">
+          (click)="login(usuario.value, senha.value)">
         </button>
 
       </div>

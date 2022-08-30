@@ -11,23 +11,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-logon = new Login();
+//logon = new Login();
 
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
-  login() {
+  login(usuario: string, senha: string) {
 
-    //console.log(this.logon.usuario);
-    //console.log(this.logon.senha);
+    //console.log(usuario);
+    //console.log(senha);
+
 
     /* Direciona para a página inicial após logon */
     this.router.navigate(['lancamentos/']);
-
-
   }
 
 }
