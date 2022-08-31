@@ -29,12 +29,20 @@ export class AuthService {
     return this.http.post(this.oauthTokenUrl, body, { headers })
       .toPromise()
       .then((response: any) => {
-        console.log(response);
         this.armazenarToken(response['access_token']);
       })
-      /* Resposta em caso de erro */
-      .catch(response =>{
-        console.log(response);
+      .catch(response => {
+        if (response.status === 400) {
+
+          /* 'invalid_grant' é o valor retornado no objeto de resposta da
+            API na variável error, caso usuário ou senha sejam inválidos. */
+
+          if (response.error.error === 'invalid_grant') {
+            return Promise.reject('Usuario ou senha inválidos!');
+
+          }
+        }
+        return Promise.reject(response);
       });
   }
 

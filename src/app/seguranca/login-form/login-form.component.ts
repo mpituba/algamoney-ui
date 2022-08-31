@@ -1,7 +1,8 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Router } from '@angular/router';
 import { Login } from './../../core/model';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ErrorHandler } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 
@@ -12,23 +13,24 @@ import { AuthService } from '../auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
-//logon = new Login();
-
-
   constructor(private router: Router,
-              public auth: AuthService) { }
+              public auth: AuthService,
+              private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(): void {  }
 
   login(usuario: string, senha: string) {
-    //console.log(usuario);
-    //console.log(senha);
 
-    this.auth.login(usuario, senha);
+    this.auth.login(usuario, senha)
+      .then(() => {
+        /* Redireciona a página inicial */
+        this.router.navigate(['lancamentos/']);
+      })
+      .catch( erro => {
+        this.errorHandler.handle(erro);
+      });
 
 
-    /* Direciona para a página inicial após logon */
-    //this.router.navigate(['lancamentos/']);
   }
 
 }

@@ -1,6 +1,6 @@
 
-/* Para a variável funcionar precisa ser public no construtor do
-  login-form.component.ts */
+<!-- Para a variável funcionar precisa ser public no construtor do
+  login-form.component.ts -->
 {{ auth.jwtPayload | json }}
 
 <div class="container logon" >
@@ -17,11 +17,12 @@
           pTooltip="Insira um email válido no sistema. Exemplo: joao@gmail.com"
           tooltipPosition="right" placeholder="E-mail" >
 
-        <app-message *ngIf="(usuario.touched)"
+        <app-message *ngIf="(loginForm.touched)"
           [control]="usuario" error="email" text="Insira um e-mail válido">
         </app-message>
 
-         <app-message *ngIf="(usuario.touched)" [control]="usuario"
+         <app-message *ngIf="loginForm.touched"
+         [control]="usuario"
           error="required" text="Insira um e-mail.">
         </app-message>
 
@@ -33,9 +34,10 @@
         <!--label>Senha</label-->
 
         <input pInputText name="senha" type="password" required
-          ngModel #senha="ngModel" placeholder="Senha">
+          ngModel #senha #senhaControl="ngModel" placeholder="Senha">
 
-        <app-message [control]="senha"
+        <app-message *ngIf="(loginForm.touched && senhaControl.touched)"
+        [control]="senhaControl"
          error="required" text="Insira uma senha">
         </app-message>
 
@@ -45,7 +47,7 @@
 
         <button pButton type="submit"
           [disabled]="loginForm.invalid" label="Login"
-          (click)="login(usuario.value, senha.value)">
+          (click)="login(usuario.value, senha.value); senha.value = '';">
         </button>
 
       </div>
