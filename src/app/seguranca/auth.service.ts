@@ -90,4 +90,12 @@ export class AuthService {
     });
   }
 
+
+
+  isAccessTokenInvalido() {
+    const token = localStorage.getItem('token');
+    return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+
 }
