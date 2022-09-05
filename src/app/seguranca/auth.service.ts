@@ -97,5 +97,17 @@ export class AuthService {
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 
+  /* Método verifica se há  ao menos uma permissão cadastrada */
+  temQualquerPermissao (roles: any) {
+    for (const role of roles) {
+      if (this.temPermissao(role)) {
+        return true;
+      }
+
+    }
+
+    return false;
+  }
+
 
 }
