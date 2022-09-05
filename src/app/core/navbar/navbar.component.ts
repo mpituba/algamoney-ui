@@ -1,5 +1,8 @@
+import { ErrorHandlerService } from './../error-handler.service';
 import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { LogoutService } from 'src/app/seguranca/logout.service';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +19,10 @@ export class NavbarComponent implements OnInit {
   usuarioLogado: string = '';
 
   /*NavBar não funcioan sem o construtor e OnInit*/
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+              private logoutService: LogoutService,
+              private errorHandler: ErrorHandlerService,
+              private router: Router) { }
 
   ngOnInit() {
     this.usuarioLogado = this.auth.jwtPayload?.nome;
@@ -29,6 +35,15 @@ export class NavbarComponent implements OnInit {
 
   criarNovoAccessToken () {
     this.auth.obterNovoAccessToken();
+  }
+
+
+  logout () {
+    this.logoutService.logout()
+      .then(() => {
+        this.router.navigate(['/login'])
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }
