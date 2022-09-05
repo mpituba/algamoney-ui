@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent, MessageService, ConfirmationService } from 'primeng/api';
@@ -29,7 +30,8 @@ export class LancamentosPesquisaComponent implements OnInit {
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
     private confirmationService: ConfirmationService,
-    private title: Title) {}
+    private title: Title,
+    private auth: AuthService) {}
 
   ngOnInit(): void {
     this.title.setTitle('Pesquisa de lançamentos');
@@ -95,6 +97,12 @@ export class LancamentosPesquisaComponent implements OnInit {
           detail: 'Lançamento excluído com sucesso!' })
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+
+
+  naoTemPermissao (permissao: string) {
+    return !this.auth.temPermissao(permissao);
   }
 
 }
