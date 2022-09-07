@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { Lancamento } from './../core/model';
+import { environment } from 'src/environments/environment';
 
 export class LancamentoFiltro {
   descricao?: string = '';
@@ -16,10 +17,12 @@ export class LancamentoFiltro {
 @Injectable({ providedIn: 'root' })
 export class LancamentoService {
 
-  lancamentosUrl = 'http://localhost:8080/lancamentos';
+  lancamentosUrl : string;
 
   constructor(private http: HttpClient,
       private datePipe: DatePipe) {
+
+      this.lancamentosUrl = `${environment.apiUrl}/lancamentos`;
 
   }
 
